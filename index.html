@@ -1,21 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manipulación del DOM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lista dinámica</title>
+  <!-- Tu hoja de estilos -->
+  <link rel="stylesheet" href="diseño.css">
 </head>
 <body>
-    <h1 id="titulo">Manipulación del DOM</h1>
-
-    <input type="text" id="inputTexto" placeholder="Agregue un Elemento">
-    <button id="btnAgregar">Agregar</button>
-
-    <div id="lista">
-
+  <main class="card">
+    <h1>Lista de productos</h1>
+    <div class="row">
+      <input id="todo-input" type="text" placeholder="Ej.: Leche">
+      <button id="add-btn">Agregar</button>
     </div>
-    
 
-    <script src="index.js"></script>
+    <p id="counter">0 productos</p>
+    <ul id="todo-list"></ul>
+
+    <div class="row" style="margin-top:10px;">
+      <button id="clear-btn" class="btn-small">Limpiar lista</button>
+    </div>
+  </main>
+
+  <!-- Tu archivo JavaScript -->
+  <script src="index.js"></script>
 </body>
 </html>

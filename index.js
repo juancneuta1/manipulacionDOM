@@ -1,25 +1,58 @@
-//Array
+// Referencias al DOM
+const input = document.getElementById('todo-input');
+const addBtn = document.getElementById('add-btn');
+const clearBtn = document.getElementById('clear-btn');
+const list = document.getElementById('todo-list');
+const counter = document.getElementById('counter');
 
-let items = [];
-
-const input = document.getElementById("inputTexto");
-const btnAgregar = document.getElementById("btnAgregar");
-const lista = document.getElementById("lista");
-
-function agregarLista(){
-    lista.innerHTML = "";
-    items.forEach((item) => {
-        const p = document.createElement("p");
-        p.textContent = item;
-        lista.appendChild(p);
-    })
+// Función para actualizar el contador
+function actualizarContador() {
+  const n = list.children.length;
+  counter.textContent = n === 1 ? '1 producto' : '${n} productos';
 }
 
-btnAgregar.addEventListener("click", () => {
-    const texto = input.value.trim();
-    if(texto !== ""){
-        items.push(texto);
-        agregarLista();
-        input.value = "";
-    }
-})
+// Crear un item con botón eliminar
+function crearItem(texto) {
+  const li = document.createElement('li');
+
+  const span = document.createElement('span');
+  span.textContent = texto;
+
+  const delBtn = document.createElement('button');
+  delBtn.textContent = 'Eliminar';
+  delBtn.className = 'btn-small';
+
+  delBtn.addEventListener('click', () => {
+    li.remove();
+    actualizarContador();
+  });
+
+  li.appendChild(span);
+  li.appendChild(delBtn);
+  return li;
+}
+
+// Agregar un producto
+function agregarElemento() {
+  const texto = input.value.trim();
+  if (!texto) return;
+
+  const item = crearItem(texto);
+  list.appendChild(item);
+
+  input.value = '';
+  input.focus();
+  actualizarContador();
+}
+
+// Eventos
+addBtn.addEventListener('click', agregarElemento);
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') agregarElemento();
+});
+clearBtn.addEventListener('click', () => {
+  list.innerHTML = '';
+  actualizarContador();
+});
+
+actualizarContador();
